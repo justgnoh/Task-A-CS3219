@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    build: ./reverse-proxy/
+    container_name: a1_reverse_proxy
+    ports: 
+      - 80:80
+    restart: always
+  hello:
+    build: ./hello/
+    depends_on:
+      - reverse-proxy
+    container_name: hello_container
+    restart: always
+  goodbye:
+    build: ./goodbye/
+    depends_on:
+      - reverse-proxy
+    container_name: goodbye_container
+    restart: always

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  proxy:
+    build: ./
+    networks:
+      - hello
+      - goodbye
+    ports:
+      - 80:80
+
+networks:
+  hello:
+    external:
+      name: hello_default
+  goodbye:
+    external:
+      name: goodbye_default
