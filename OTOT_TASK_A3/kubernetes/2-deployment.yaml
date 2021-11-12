@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: taska3
+  name: client-deployment
+  labels:
+    app: client-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: client-service
+  template:
+    metadata:
+      name: client-service
+      labels:
+        app: client-service
+    spec:
+      containers:
+      - name: client-service
+        image: client-service:1.0.0
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            cpu: 35m
+          requests:
+            cpu: 35m
